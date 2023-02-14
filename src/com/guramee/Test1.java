@@ -13,5 +13,10 @@ public class Test1 {
         String str = "AaBbCc12345.,";
         //System.out.println(str.replaceAll("[^a-zA-Z1-3.]", ""));
         System.out.println(str.replaceAll("\\d", ""));
+
+        int a = 10;
+        int b = 4;
+        double c = (double)a/ (double)b;
+        System.out.printf("%d / %d = %f \n%s",a,b,c, "Mantaps");
     }
 }
