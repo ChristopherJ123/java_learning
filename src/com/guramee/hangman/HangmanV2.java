@@ -9,6 +9,7 @@ public class HangmanV2 {
         String question;
         String input;
         String wrongLetters = "";
+        String inputtedLetters = "";
         int wrongAnswers = 0;
         int ansCheck = 0;
         boolean charCheck = false;
@@ -116,15 +117,31 @@ public class HangmanV2 {
 
             //Misal input: ASD
             for (int i = 0; i < input.length(); i++) {
+
+                //Check already inputted
+                for (int k = 0; k < inputtedLetters.length(); k++){
+                    if (input.charAt(i) == inputtedLetters.charAt(k)) {
+                        System.out.println("You already inputted this character!");
+                        charCheck = true;
+                        break;
+                    }
+                }
+                if (charCheck) {
+                    charCheck = false;
+                    break;
+                }
+
                 for (int j = 0; j < question.length(); j++) {
                     //Cek Input[i] == Question[j1, j2, j3, j4, j5]
                     if (input.charAt(i) == questionChars[j]) {
                         questionCensored[j] = input.charAt(i);
+                        inputtedLetters = inputtedLetters.concat(Character.toString(input.charAt(i)));
                         charCheck = true;
                         ansCheck++;
                     }
                 }
                 if (!charCheck) {
+                    inputtedLetters = inputtedLetters.concat(Character.toString(input.charAt(i)));
                     wrongLetters = wrongLetters.concat(Character.toString(input.charAt(i)));
                     wrongAnswers++;
                 } else
