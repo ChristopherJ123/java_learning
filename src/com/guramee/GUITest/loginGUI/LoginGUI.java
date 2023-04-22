@@ -1,11 +1,14 @@
 package com.guramee.GUITest.loginGUI;
 
+import com.guramee.GUITest.GUICalculatorTry1Upgrade3;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 
 
 public class LoginGUI extends JFrame implements ActionListener, KeyListener {
@@ -18,6 +21,8 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
     JPasswordField passwordTextField;
     JLabel staticLabel;
 
+    char[] password = {'t', 'o', 't', 'o'};
+
     LoginGUI() {
         userNameTextField = new JTextField();
         userNameTextField.setPreferredSize(new Dimension(250,40));
@@ -26,6 +31,7 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
         passwordTextField = new JPasswordField();
         passwordTextField.setPreferredSize(new Dimension(250,40));
         passwordTextField.setFont(new Font("Arial", Font.PLAIN, 16));
+        passwordTextField.addKeyListener(this);
 
         usernamePanel = new JPanel();
         usernamePanel.setLayout(new FlowLayout());
@@ -52,8 +58,12 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
         this.add(usernamePanel);
         this.add(passwordPanel);
         this.add(signinPanel);
-        this.addKeyListener(this);
         this.pack();
+        this.addKeyListener(this);
+    }
+
+    public void login() {
+
     }
 
     public static void main(String[] args) {
@@ -80,6 +90,13 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println(e.getKeyChar());
+        if (e.getKeyCode() == 10) {
+            if (userNameTextField.getText().equals("christopherj") && Arrays.equals(passwordTextField.getPassword(), password)) {
+                JOptionPane.showMessageDialog(null, "Welcome user", "Login success", JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
+                new GUICalculatorTry1Upgrade3();
+            } else
+                JOptionPane.showMessageDialog(null, "Login failed", "Login failed", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }

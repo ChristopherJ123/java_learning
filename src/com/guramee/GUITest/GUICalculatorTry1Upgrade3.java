@@ -27,7 +27,7 @@ public class GUICalculatorTry1Upgrade3 extends JFrame implements ActionListener 
     char expression;
     boolean input1Complete;
 
-    GUICalculatorTry1Upgrade3() {
+    public GUICalculatorTry1Upgrade3() {
 
         //JButton
         for (int i = 0; i < 10; i++) {
