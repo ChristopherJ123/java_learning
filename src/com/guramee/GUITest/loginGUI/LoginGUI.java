@@ -27,6 +27,7 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
         userNameTextField = new JTextField();
         userNameTextField.setPreferredSize(new Dimension(250,40));
         userNameTextField.setFont(new Font("Arial", Font.PLAIN, 16));
+        userNameTextField.addKeyListener(this);
 
         passwordTextField = new JPasswordField();
         passwordTextField.setPreferredSize(new Dimension(250,40));
@@ -62,8 +63,15 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
         this.addKeyListener(this);
     }
 
-    public void login() {
-
+    public void login(String username, char[] password) {
+        if (username.equals("christopherj") && Arrays.equals(password, this.password)) {
+            JOptionPane.showMessageDialog(null, "Welcome user", "Login success", JOptionPane.PLAIN_MESSAGE);
+            this.dispose();
+            new GUICalculatorTry1Upgrade3();
+        } else if (username.length() == 0 || password.length == 0) {
+            JOptionPane.showMessageDialog(null, "Field cannot be empty!", "Login failed", JOptionPane.WARNING_MESSAGE);
+        } else
+            JOptionPane.showMessageDialog(null, "Login failed", "Login failed", JOptionPane.WARNING_MESSAGE);
     }
 
     public static void main(String[] args) {
@@ -73,8 +81,7 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == signinButton) {
-            System.out.println(userNameTextField.getText());
-            System.out.println(passwordTextField.getPassword());
+            login(userNameTextField.getText(), passwordTextField.getPassword());
         }
     }
 
@@ -91,12 +98,7 @@ public class LoginGUI extends JFrame implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == 10) {
-            if (userNameTextField.getText().equals("christopherj") && Arrays.equals(passwordTextField.getPassword(), password)) {
-                JOptionPane.showMessageDialog(null, "Welcome user", "Login success", JOptionPane.PLAIN_MESSAGE);
-                this.dispose();
-                new GUICalculatorTry1Upgrade3();
-            } else
-                JOptionPane.showMessageDialog(null, "Login failed", "Login failed", JOptionPane.WARNING_MESSAGE);
+            login(userNameTextField.getText(), passwordTextField.getPassword());
         }
     }
 }
