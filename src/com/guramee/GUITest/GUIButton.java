@@ -2,10 +2,7 @@ package com.guramee.GUITest;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class GUIButton extends JFrame implements ActionListener, KeyListener {
 
@@ -21,6 +18,14 @@ public class GUIButton extends JFrame implements ActionListener, KeyListener {
         button1.addActionListener(this);
         button1.setFocusable(false);
         button1.setBorder(BorderFactory.createEtchedBorder());
+        button1.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                button1.setBackground(Color.GREEN);
+            }
+            public void mouseExited(MouseEvent e) {
+                button1.setBackground(Color.RED);
+            }
+        });
 
         button2 = new JButton("2");
         button2.setBounds(300, 0, 200, 200);
